@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>XSS Script Src Test</title>
+</head>
+<body>
+  <h2>XSS External Script Test</h2>
+  <form method="GET">
+    Masukkan pesan: <input type="text" name="msg">
+    <input type="submit" value="Tampilkan">
+  </form>
+
+  <hr>
+  <div>
+    <strong>Pesan Anda:</strong><br>
+    <div id="output">
+      <script>
+        // Tidak aman! Menulis langsung input ke halaman
+        const params = new URLSearchParams(location.search);
+        document.write(params.get("msg") || "Tidak ada pesan.");
+      </script>
+    </div>
+  </div>
+</body>
+</html>
